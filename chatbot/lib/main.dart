@@ -42,7 +42,7 @@ class _HomePageDialogflow extends State<HomePageDialogflow> {
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
                 decoration:
-                  InputDecoration.collapsed(hintText: "Send a message"),
+                  InputDecoration.collapsed(hintText: "Say something..."),
               ),
             ),
             Container(
@@ -121,20 +121,25 @@ class ChatMessage extends StatelessWidget {
   final String name;
   final bool type;
 
+  // Imouto ListView item
   List<Widget> otherMessage(context) {
+    // Row with Avatar on the left and Column on the right
     return <Widget>[
+      // Avatar
       Container(
-        margin: const EdgeInsets.only(right: 16.0),
+        margin: const EdgeInsets.fromLTRB(8, 4, 16, 0),
         child: CircleAvatar(
+          radius: 30.0,
           backgroundImage: AssetImage("assets/imouto.png"),
         ),
       ),
+      // Column containing the name and text
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(this.name,
-                style: TextStyle(fontWeight: FontWeight.bold)),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: Text(text),
@@ -145,13 +150,16 @@ class ChatMessage extends StatelessWidget {
     ];
   }
 
+  // User ListView item
   List<Widget> myMessage(context) {
+    // Row with Column on the left and Avatar on the right 
     return <Widget>[
+      // Column containing the name and text
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Text(this.name, style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(this.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             Container(
               margin: const EdgeInsets.only(top: 5.0),
               child: Text(text),
@@ -159,12 +167,14 @@ class ChatMessage extends StatelessWidget {
           ],
         ),
       ),
+      // Avatar
       Container(
-        margin: const EdgeInsets.only(left: 16.0),
+        margin: const EdgeInsets.fromLTRB(16, 4, 8, 0),
         child: CircleAvatar(
+          radius: 30.0,
           child: Text(
             this.name[0],
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
         ),
       ),
